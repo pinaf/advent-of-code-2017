@@ -1,6 +1,7 @@
 package aoc;
 
 import java.util.Arrays;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 
 import lombok.RequiredArgsConstructor;
@@ -12,13 +13,20 @@ public final class Day01 implements Challenge<Long> {
 
     private final int[] input;
 
-    public Day01(final String input) {
+    private final Function<Integer, Integer> neighbor;
+
+    public Day01(final String input, final Day01.NeighborStrategy strategy) {
         this(
             Arrays
                 .stream(Day01.PATTERN.split(input))
                 .mapToInt(Integer::parseUnsignedInt)
-                .toArray()
+                .toArray(),
+            strategy
         );
+    }
+
+    public Day01(final int[] input, final Day01.NeighborStrategy strategy) {
+        this(input, strategy.apply(input.length));
     }
 
     @Override
@@ -26,19 +34,25 @@ public final class Day01 implements Challenge<Long> {
         if (this.input.length < 2) {
             return 0L;
         }
-        int last = this.input[0];
         long sum = 0L;
-        for (int idx = 1; idx < this.input.length; ++idx) {
+        for (int idx = 0; idx < this.input.length; ++idx) {
             final int current = this.input[idx];
-            if (current == last) {
-                sum += (long) last;
+            if (current == this.input[this.neighbor.apply(idx)]) {
+                sum += (long) current;
             }
-            last = current;
-        }
-        if (this.input[0] == this.input[this.input.length - 1]) {
-            sum += this.input[0];
         }
         return sum;
+    }
+
+    public interface NeighborStrategy extends Function<Integer, Function<Integer, Integer>> {
+
+        final class Next implements Day01.NeighborStrategy {
+            @Override
+            public Function<Integer, Integer> apply(final Integer length) {
+                return n -> (n + 1) % length;
+            }
+        }
+
     }
 
 }
