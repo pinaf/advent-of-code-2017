@@ -53,6 +53,13 @@ public final class Day01 implements Challenge<Long> {
             }
         }
 
+        final class HalfAround implements Day01.NeighborStrategy {
+            @Override
+            public Function<Integer, Integer> apply(final Integer length) {
+                return n -> (n + length / 2) % length;
+            }
+        }
+
     }
 
 }
