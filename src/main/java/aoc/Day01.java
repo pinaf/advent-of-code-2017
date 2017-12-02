@@ -15,7 +15,7 @@ public final class Day01 implements Challenge<Long> {
 
     private final Function<Integer, Integer> neighbor;
 
-    public Day01(final String input, final Day01.NeighborStrategy strategy) {
+    public Day01(final CharSequence input, final Day01.NeighborStrategy strategy) {
         this(
             Arrays
                 .stream(Day01.PATTERN.split(input))
