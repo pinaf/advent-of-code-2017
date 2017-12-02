@@ -10,6 +10,7 @@ public final class Day02Test {
     public void part1() {
         MatcherAssert.assertThat(
             new Day02(
+                new Day02.Strategy.MinMax(),
                 "5 1 9 5",
                 "7 5 3",
                 "2 4 6 8"

@@ -33,6 +33,7 @@ public final class Challenges {
         Challenges.log.info(
             "Day 02 - Part 1: {}",
             new Day02(
+                new Day02.Strategy.MinMax(),
                 IOUtils.toString(Challenges.class.getResourceAsStream("day02.txt"), Charset.defaultCharset()).split("\n")
             ).run()
         );
