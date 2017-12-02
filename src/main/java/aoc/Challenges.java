@@ -37,6 +37,13 @@ public final class Challenges {
                 IOUtils.toString(Challenges.class.getResourceAsStream("day02.txt"), Charset.defaultCharset()).split("\n")
             ).run()
         );
+        Challenges.log.info(
+            "Day 02 - Part 2: {}",
+            new Day02(
+                new Day02.Strategy.EvenlyDivisible(),
+                IOUtils.toString(Challenges.class.getResourceAsStream("day02.txt"), Charset.defaultCharset()).split("\n")
+            ).run()
+        );
     }
 
 }

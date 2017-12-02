@@ -57,7 +57,7 @@ public final class Day02 implements Challenge<Long> {
         final class MinMax implements Day02.Strategy {
 
             @Override
-            public Long apply(final Row row) {
+            public Long apply(final Day02.Row row) {
                 final int[] data = row.data();
                 if (data.length < 1) {
                     return 0L;
@@ -74,6 +74,28 @@ public final class Day02 implements Challenge<Long> {
                     }
                 }
                 return (long) max - (long) min;
+            }
+
+        }
+
+        final class EvenlyDivisible implements Day02.Strategy {
+
+            @Override
+            public Long apply(final Day02.Row row) {
+                final int[] data = row.data();
+                for (int idx = 0; idx < data.length; ++idx) {
+                    final int left = data[idx];
+                    for (int jdx = 0; jdx < data.length; ++jdx) {
+                        if (jdx == idx) {
+                            continue;
+                        }
+                        final int right = data[jdx];
+                        if (right % left == 0) {
+                            return (long) right / (long) left;
+                        }
+                    }
+                }
+                return 0L;
             }
 
         }
