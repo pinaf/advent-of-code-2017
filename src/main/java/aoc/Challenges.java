@@ -44,6 +44,10 @@ public final class Challenges {
                 IOUtils.toString(Challenges.class.getResourceAsStream("day02.txt"), Charset.defaultCharset()).split("\n")
             ).run()
         );
+        Challenges.log.info(
+            "Day 03 - Part 1: {}",
+            new Day03(289326L).run()
+        );
     }
 
 }
