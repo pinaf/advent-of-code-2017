@@ -1,9 +1,10 @@
-package aoc;
+package aoc.day03;
 
+import aoc.Challenge;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public final class Day03 implements Challenge<Long>{
+public final class Day03Part1Fast implements Challenge<Long> {
 
     private final long target;
 

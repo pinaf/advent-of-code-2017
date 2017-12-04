@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 
 import org.apache.commons.io.IOUtils;
 
+import aoc.day03.Day03Part1Fast;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -46,7 +47,7 @@ public final class Challenges {
         );
         Challenges.log.info(
             "Day 03 - Part 1: {}",
-            new Day03(289326L).run()
+            new Day03Part1Fast(289326L).run()
         );
     }
 
