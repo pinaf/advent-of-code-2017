@@ -4,7 +4,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-public final class Day04Part1Test {
+public final class Day04Test {
 
     @Test
     public void tests() {
