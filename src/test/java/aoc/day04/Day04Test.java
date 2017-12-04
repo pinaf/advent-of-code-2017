@@ -7,7 +7,7 @@ import org.junit.Test;
 public final class Day04Test {
 
     @Test
-    public void tests() {
+    public void part1() {
         MatcherAssert.assertThat(
             new Day04Part1("aa bb cc dd ee").run(),
             Matchers.is(1L)
@@ -27,6 +27,30 @@ public final class Day04Test {
                 "aa bb cc dd aaa"
             ).run(),
             Matchers.is(2L)
+        );
+    }
+
+    @Test
+    public void part2() {
+        MatcherAssert.assertThat(
+            new Day04Part2("abcde fghij").run(),
+            Matchers.is(1L)
+        );
+        MatcherAssert.assertThat(
+            new Day04Part2("abcde xyz ecdab").run(),
+            Matchers.is(0L)
+        );
+        MatcherAssert.assertThat(
+            new Day04Part2("a ab abc abd abf abj").run(),
+            Matchers.is(1L)
+        );
+        MatcherAssert.assertThat(
+            new Day04Part2("iiii oiii ooii oooi oooo").run(),
+            Matchers.is(1L)
+        );
+        MatcherAssert.assertThat(
+            new Day04Part2("oiii ioii iioi iiio").run(),
+            Matchers.is(0L)
         );
     }
 
