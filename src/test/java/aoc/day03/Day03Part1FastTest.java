@@ -4,8 +4,6 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import aoc.day03.Day03Part1Fast;
-
 public final class Day03Part1FastTest {
 
     @Test
