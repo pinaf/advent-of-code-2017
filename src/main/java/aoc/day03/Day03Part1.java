@@ -1,22 +1,22 @@
 package aoc.day03;
 
-import aoc.Challenge;
+import aoc.ChallengeWrap;
+import aoc.StdInput;
 
-public final class Day03Part1 implements Challenge<Long> {
+public final class Day03Part1 extends ChallengeWrap<Long> {
 
-    private final Challenge<Long> wrapped;
-
-    public Day03Part1(final long target) {
-        this.wrapped = new Day03(
-            new ValueFunction.Increment(),
-            state -> state.value() >= target,
-            new ValueFunction.ManhattanDistanceToOrigin()
-        );
+    public Day03Part1() {
+        this(Long.parseLong(new StdInput(3).read().trim()));
     }
 
-    @Override
-    public Long run() {
-        return this.wrapped.run();
+    public Day03Part1(final long target) {
+        super(
+            new Day03(
+                new ValueFunction.Increment(),
+                state -> state.value() >= target,
+                new ValueFunction.ManhattanDistanceToOrigin()
+            )
+        );
     }
 
 }

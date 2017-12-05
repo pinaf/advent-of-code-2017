@@ -12,6 +12,7 @@ public final class Day03Part1FastTest {
         MatcherAssert.assertThat(new Day03Part1Fast(12L).run(), Matchers.is(3L));
         MatcherAssert.assertThat(new Day03Part1Fast(23L).run(), Matchers.is(2L));
         MatcherAssert.assertThat(new Day03Part1Fast(1024L).run(), Matchers.is(31L));
+        MatcherAssert.assertThat(new Day03Part1Fast(289326L).run(), Matchers.is(419L));
     }
 
 }

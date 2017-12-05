@@ -1,20 +1,17 @@
 package aoc.day04;
 
-import aoc.Challenge;
+import aoc.ChallengeWrap;
 
-public final class Day04Part1 implements Challenge<Long> {
+public final class Day04Part1 extends ChallengeWrap<Long> {
 
     private static final PassphrasePolicy POLICY = new PassphrasePolicy.NoRepeatedWords();
 
-    private final Challenge<Long> wrapped;
-
-    public Day04Part1(final String... input) {
-        this.wrapped = new Day04(Day04Part1.POLICY, input);
+    public Day04Part1() {
+        super(new Day04(Day04Part1.POLICY));
     }
 
-    @Override
-    public Long run() {
-        return this.wrapped.run();
+    public Day04Part1(final String input) {
+        super(new Day04(Day04Part1.POLICY, input));
     }
 
 }

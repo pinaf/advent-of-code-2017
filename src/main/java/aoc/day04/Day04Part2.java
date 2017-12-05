@@ -1,20 +1,17 @@
 package aoc.day04;
 
-import aoc.Challenge;
+import aoc.ChallengeWrap;
 
-public final class Day04Part2 implements Challenge<Long> {
+public final class Day04Part2 extends ChallengeWrap<Long> {
 
     private static final PassphrasePolicy POLICY = new PassphrasePolicy.NoAnagrams();
 
-    private final Challenge<Long> wrapped;
-
-    public Day04Part2(final String... input) {
-        this.wrapped = new Day04(Day04Part2.POLICY, input);
+    public Day04Part2() {
+        super(new Day04(Day04Part2.POLICY));
     }
 
-    @Override
-    public Long run() {
-        return this.wrapped.run();
+    public Day04Part2(final String input) {
+        super(new Day04(Day04Part2.POLICY, input));
     }
 
 }

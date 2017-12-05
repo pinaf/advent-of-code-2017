@@ -22,12 +22,13 @@ public final class Day04Test {
         );
         MatcherAssert.assertThat(
             new Day04Part1(
-                "aa bb cc dd ee",
-                "aa bb cc dd aa",
-                "aa bb cc dd aaa"
+                "aa bb cc dd ee\n" +
+                "aa bb cc dd aa\n" +
+                "aa bb cc dd aaa\n"
             ).run(),
             Matchers.is(2L)
         );
+        MatcherAssert.assertThat(new Day04Part1().run(), Matchers.is(455L));
     }
 
     @Test
@@ -52,6 +53,7 @@ public final class Day04Test {
             new Day04Part2("oiii ioii iioi iiio").run(),
             Matchers.is(0L)
         );
+        MatcherAssert.assertThat(new Day04Part2().run(), Matchers.is(186L));
     }
 
 }

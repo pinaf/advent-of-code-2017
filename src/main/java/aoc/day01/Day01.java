@@ -1,9 +1,11 @@
-package aoc;
+package aoc.day01;
 
 import java.util.Arrays;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
+import aoc.Challenge;
+import aoc.StdInput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -15,17 +17,21 @@ public final class Day01 implements Challenge<Long> {
 
     private final Function<Integer, Integer> neighbor;
 
-    public Day01(final CharSequence input, final Day01.NeighborStrategy strategy) {
+    Day01(final NeighborStrategy strategy) {
+        this(new StdInput(1).read(), strategy);
+    }
+
+    Day01(final String input, final NeighborStrategy strategy) {
         this(
             Arrays
-                .stream(Day01.PATTERN.split(input))
+                .stream(Day01.PATTERN.split(input.trim()))
                 .mapToInt(Integer::parseUnsignedInt)
                 .toArray(),
             strategy
         );
     }
 
-    public Day01(final int[] input, final Day01.NeighborStrategy strategy) {
+    Day01(final int[] input, final NeighborStrategy strategy) {
         this(input, strategy.apply(input.length));
     }
 
@@ -42,24 +48,6 @@ public final class Day01 implements Challenge<Long> {
             }
         }
         return sum;
-    }
-
-    public interface NeighborStrategy extends Function<Integer, Function<Integer, Integer>> {
-
-        final class Next implements Day01.NeighborStrategy {
-            @Override
-            public Function<Integer, Integer> apply(final Integer length) {
-                return n -> (n + 1) % length;
-            }
-        }
-
-        final class HalfAround implements Day01.NeighborStrategy {
-            @Override
-            public Function<Integer, Integer> apply(final Integer length) {
-                return n -> (n + length / 2) % length;
-            }
-        }
-
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import aoc.Challenge;
+import aoc.StdInput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -18,11 +19,15 @@ public final class Day04 implements Challenge<Long> {
 
     private final List<String[]> passphrases;
 
-    public Day04(final PassphrasePolicy policy, final String... input) {
-        this(policy, Arrays.stream(input));
+    public Day04(final PassphrasePolicy policy) {
+        this(policy, new StdInput(4).read());
     }
 
-    public Day04(final PassphrasePolicy policy, final Stream<String> passphrases) {
+    Day04(final PassphrasePolicy policy, final String input) {
+        this(policy, Arrays.stream(input.split("\n")));
+    }
+
+    Day04(final PassphrasePolicy policy, final Stream<String> passphrases) {
         this(
             policy,
             passphrases

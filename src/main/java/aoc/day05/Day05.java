@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import aoc.Challenge;
+import aoc.StdInput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -14,6 +15,10 @@ public final class Day05 implements Challenge<Long> {
     private final Operation operation;
 
     private final int[] jumps;
+
+    Day05(final Operation operation) {
+        this(operation, new StdInput(5).read());
+    }
 
     Day05(final Operation operation, final CharSequence input) {
         this(

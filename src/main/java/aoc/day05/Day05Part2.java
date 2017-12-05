@@ -1,24 +1,21 @@
 package aoc.day05;
 
-import aoc.Challenge;
+import aoc.ChallengeWrap;
 
-public final class Day05Part2 implements Challenge<Long> {
+public final class Day05Part2 extends ChallengeWrap<Long> {
 
     private static final Operation OPERATION = new Operation.Conditional();
 
-    private final Challenge<Long> wrapped;
+    public Day05Part2() {
+        super(new Day05(Day05Part2.OPERATION));
+    }
 
     public Day05Part2(final CharSequence input) {
-        this.wrapped = new Day05(Day05Part2.OPERATION, input);
+        super(new Day05(Day05Part2.OPERATION, input));
     }
 
     public Day05Part2(final int[] jumps) {
-        this.wrapped = new Day05(Day05Part2.OPERATION, jumps);
-    }
-
-    @Override
-    public Long run() {
-        return this.wrapped.run();
+        super(new Day05(Day05Part2.OPERATION, jumps));
     }
 
 }

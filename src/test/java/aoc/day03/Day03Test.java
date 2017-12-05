@@ -12,7 +12,7 @@ public final class Day03Test {
         MatcherAssert.assertThat(new Day03Part1(12L).run(), Matchers.is(3L));
         MatcherAssert.assertThat(new Day03Part1(23L).run(), Matchers.is(2L));
         MatcherAssert.assertThat(new Day03Part1(1024L).run(), Matchers.is(31L));
-        MatcherAssert.assertThat(new Day03Part1(289326L).run(), Matchers.is(419L));
+        MatcherAssert.assertThat(new Day03Part1().run(), Matchers.is(419L));
     }
 
     @Test
@@ -38,6 +38,7 @@ public final class Day03Test {
         MatcherAssert.assertThat(new Day03Part2(351L).run(), Matchers.is(362L));
         MatcherAssert.assertThat(new Day03Part2(362L).run(), Matchers.is(747L));
         MatcherAssert.assertThat(new Day03Part2(747L).run(), Matchers.is(806L));
+        MatcherAssert.assertThat(new Day03Part2().run(), Matchers.is(295229L));
     }
 
 }
