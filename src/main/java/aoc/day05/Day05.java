@@ -15,7 +15,7 @@ public final class Day05 implements Challenge<Long> {
 
     private final int[] jumps;
 
-    public Day05(final Operation operation, final CharSequence input) {
+    Day05(final Operation operation, final CharSequence input) {
         this(
             operation,
             Arrays.stream(Day05.PATTERN.split(input))

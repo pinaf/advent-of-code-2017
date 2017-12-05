@@ -22,4 +22,12 @@ public final class Day05Test {
         );
     }
 
+    @Test
+    public void part2() {
+        MatcherAssert.assertThat(
+            new Day05Part2("0 3 0 1 -3").run(),
+            Matchers.is(10L)
+        );
+    }
+
 }
