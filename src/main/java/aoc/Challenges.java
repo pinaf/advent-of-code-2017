@@ -9,6 +9,7 @@ import aoc.day03.Day03Part1Fast;
 import aoc.day03.Day03Part2;
 import aoc.day04.Day04Part1;
 import aoc.day04.Day04Part2;
+import aoc.day05.Day05;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -66,6 +67,12 @@ public final class Challenges {
             "Day 04 - Part 2: {}",
             new Day04Part2(
                 IOUtils.toString(Challenges.class.getResourceAsStream("day04/day04.txt"), Charset.defaultCharset()).split("\n")
+            ).run()
+        );
+        Challenges.log.info(
+            "Day 05 - Part 1: {}",
+            new Day05(
+                IOUtils.toString(Challenges.class.getResourceAsStream("day05/day05.txt"), Charset.defaultCharset())
             ).run()
         );
     }

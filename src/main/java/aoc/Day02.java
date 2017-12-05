@@ -38,7 +38,7 @@ public final class Day02 implements Challenge<Long> {
     @RequiredArgsConstructor
     public static final class Row {
 
-        private static final Pattern PATTERN = Pattern.compile("\\s");
+        private static final Pattern PATTERN = Pattern.compile("(\\s)+");
 
         private final int[] data;
 
