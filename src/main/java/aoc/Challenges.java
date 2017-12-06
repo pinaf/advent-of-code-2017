@@ -1,5 +1,7 @@
 package aoc;
 
+import java.util.stream.Stream;
+
 import aoc.day01.Day01Part1;
 import aoc.day01.Day01Part2;
 import aoc.day02.Day02Part1;
@@ -23,18 +25,20 @@ public final class Challenges {
     }
 
     public static void main(final String[] args) {
-        Challenges.log.info("Day 01 - Part 1: {}", new Day01Part1().run());
-        Challenges.log.info("Day 01 - Part 2: {}", new Day01Part2().run());
-        Challenges.log.info("Day 02 - Part 1: {}", new Day02Part1().run());
-        Challenges.log.info("Day 02 - Part 2: {}", new Day02Part2().run());
-        Challenges.log.info("Day 03 - Part 1: {}", new Day03Part1().run());
-        Challenges.log.info("Day 03 - Part 2: {}", new Day03Part2().run());
-        Challenges.log.info("Day 04 - Part 1: {}", new Day04Part1().run());
-        Challenges.log.info("Day 04 - Part 2: {}", new Day04Part2().run());
-        Challenges.log.info("Day 05 - Part 1: {}", new Day05Part1().run());
-        Challenges.log.info("Day 05 - Part 2: {}", new Day05Part2().run());
-        Challenges.log.info("Day 06 - Part 1: {}", new Day06Part1().run());
-        Challenges.log.info("Day 06 - Part 2: {}", new Day06Part2().run());
+        Stream.of(
+            new Day01Part1(),
+            new Day01Part2(),
+            new Day02Part1(),
+            new Day02Part2(),
+            new Day03Part1(),
+            new Day03Part2(),
+            new Day04Part1(),
+            new Day04Part2(),
+            new Day05Part1(),
+            new Day05Part2(),
+            new Day06Part1(),
+            new Day06Part2()
+        ).forEach(challenge -> Challenges.log.info("{}: {}", challenge.name(), challenge.run()));
     }
 
 }
