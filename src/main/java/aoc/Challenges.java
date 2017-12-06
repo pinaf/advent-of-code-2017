@@ -11,6 +11,7 @@ import aoc.day04.Day04Part2;
 import aoc.day05.Day05Part1;
 import aoc.day05.Day05Part2;
 import aoc.day06.Day06Part1;
+import aoc.day06.Day06Part2;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -33,6 +34,7 @@ public final class Challenges {
         Challenges.log.info("Day 05 - Part 1: {}", new Day05Part1().run());
         Challenges.log.info("Day 05 - Part 2: {}", new Day05Part2().run());
         Challenges.log.info("Day 06 - Part 1: {}", new Day06Part1().run());
+        Challenges.log.info("Day 06 - Part 2: {}", new Day06Part2().run());
     }
 
 }

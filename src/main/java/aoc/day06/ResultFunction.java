@@ -11,4 +11,11 @@ public interface ResultFunction extends BiFunction<Long, Integer, Long> {
         }
     }
 
+    final class CycleSize implements ResultFunction {
+        @Override
+        public Long apply(final Long steps, final Integer index) {
+            return steps - index;
+        }
+    }
+
 }
