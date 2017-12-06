@@ -3,6 +3,7 @@ package aoc.day06;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
@@ -15,20 +16,24 @@ public final class Day06 implements Challenge<Long> {
 
     private static final Pattern PATTERN = Pattern.compile("(\\s)+");
 
+    private final ResultFunction result;
+
     private final int[] banks;
 
     private final List<int[]> seen = new ArrayList<>(1000);
 
-    public Day06() {
+    Day06(final ResultFunction result) {
         this(
+            result,
             Arrays.stream(PATTERN.split(new StdInput(6).read()))
                 .mapToInt(Integer::parseUnsignedInt)
                 .toArray()
         );
     }
 
-    public Day06(final int head, final int... tail) {
+    Day06(final ResultFunction result, final int head, final int... tail) {
         this(
+            result,
             IntStream.concat(
                 IntStream.of(head),
                 Arrays.stream(tail)
@@ -41,16 +46,20 @@ public final class Day06 implements Challenge<Long> {
         if (this.banks.length < 2) {
             return 0L;
         }
+        this.rememberCurrentConfiguration();
         long steps = 0L;
-        boolean match = false;
-        while (!match) {
+        Optional<Integer> match = Optional.empty();
+        while (!match.isPresent()) {
             steps++;
-            final int bank = this.selectBank();
-            this.redistribute(bank);
+            this.redistribute(this.selectBank());
             match = this.seenBefore();
-            this.seen.add(Arrays.copyOf(this.banks, this.banks.length));
+            this.rememberCurrentConfiguration();
         }
-        return steps;
+        return this.result.apply(steps, match.get());
+    }
+
+    private void rememberCurrentConfiguration() {
+        this.seen.add(Arrays.copyOf(this.banks, this.banks.length));
     }
 
     private int selectBank() {
@@ -75,9 +84,14 @@ public final class Day06 implements Challenge<Long> {
         }
     }
 
-    private boolean seenBefore() {
-        return this.seen.stream()
-            .anyMatch(configuration -> Arrays.equals(this.banks, configuration));
+    private Optional<Integer> seenBefore() {
+        for (int idx = 0; idx < this.seen.size(); ++idx) {
+            final int[] configuration = this.seen.get(idx);
+            if (Arrays.equals(this.banks, configuration)) {
+                return Optional.of(idx);
+            }
+        }
+        return Optional.empty();
     }
 
 }
