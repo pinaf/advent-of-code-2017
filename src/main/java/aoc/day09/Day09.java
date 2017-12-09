@@ -22,6 +22,7 @@ public final class Day09 implements Challenge<Long>  {
         boolean garbage = false;
         boolean ignore = false;
         long score = 0L;
+        long gcount = 0L;
         int currentScore = 0;
         for (int idx = 0; idx < this.input.length; ++idx) {
             final char current = this.input[idx];
@@ -33,6 +34,8 @@ public final class Day09 implements Challenge<Long>  {
                         ignore = true;
                     } else if (current == '>') {
                         garbage = false;
+                    } else {
+                        gcount++;
                     }
                 }
             } else {
@@ -47,7 +50,7 @@ public final class Day09 implements Challenge<Long>  {
                 }
             }
         }
-        return score;
+        return gcount;
     }
 
 }
