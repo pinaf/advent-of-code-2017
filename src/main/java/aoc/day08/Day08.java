@@ -7,9 +7,7 @@ import java.util.stream.Collectors;
 import aoc.Challenge;
 import aoc.StdInput;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor
 public final class Day08 implements Challenge<Long> {
 
