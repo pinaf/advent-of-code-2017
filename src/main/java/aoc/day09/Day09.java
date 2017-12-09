@@ -7,25 +7,26 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public final class Day09 implements Challenge<Long>  {
 
+    private final Solution solution;
+
     private final char[] input;
 
-    public Day09() {
-        this(new StdInput(9).read());
+    private final State state = new State.Default();
+
+    Day09(final Solution solution) {
+        this(solution, new StdInput(9).read());
     }
 
-    public Day09(final String input) {
-        this(input.toCharArray());
+    Day09(final Solution solution, final String input) {
+        this(solution, input.toCharArray());
     }
 
     @Override
     public Long run() {
         boolean garbage = false;
         boolean ignore = false;
-        long score = 0L;
-        long gcount = 0L;
-        int currentScore = 0;
-        for (int idx = 0; idx < this.input.length; ++idx) {
-            final char current = this.input[idx];
+        int depth = 0;
+        for (final char current : this.input) {
             if (garbage) {
                 if (ignore) {
                     ignore = false;
@@ -35,7 +36,7 @@ public final class Day09 implements Challenge<Long>  {
                     } else if (current == '>') {
                         garbage = false;
                     } else {
-                        gcount++;
+                        this.state.garbageSeen();
                     }
                 }
             } else {
@@ -43,14 +44,14 @@ public final class Day09 implements Challenge<Long>  {
                     garbage = true;
                 }
                 if (current == '{') {
-                    currentScore += 1;
-                    score += currentScore;
+                    depth += 1;
+                    this.state.newGroupSeen(depth);
                 } else if (current == '}') {
-                    currentScore -= 1;
+                    depth -= 1;
                 }
             }
         }
-        return gcount;
+        return this.solution.apply(this.state);
     }
 
 }
