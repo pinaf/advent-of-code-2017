@@ -14,7 +14,14 @@ public final class Day09Test {
 
     @Test
     public void test() {
-        MatcherAssert.assertThat(new Day09().run(), Matchers.is(1L));
+        MatcherAssert.assertThat(new Day09("{}").run(), Matchers.is(1L));
+        MatcherAssert.assertThat(new Day09("{{{}}}").run(), Matchers.is(6L));
+        MatcherAssert.assertThat(new Day09("{{},{}}").run(), Matchers.is(5L));
+        MatcherAssert.assertThat(new Day09("{{{},{},{{}}}}").run(), Matchers.is(16L));
+        MatcherAssert.assertThat(new Day09("{<a>,<a>,<a>,<a>}").run(), Matchers.is(1L));
+        MatcherAssert.assertThat(new Day09("{{<ab>},{<ab>},{<ab>},{<ab>}}").run(), Matchers.is(9L));
+        MatcherAssert.assertThat(new Day09("{{<!!>},{<!!>},{<!!>},{<!!>}}").run(), Matchers.is(9L));
+        MatcherAssert.assertThat(new Day09("{{<a!>},{<a!>},{<a!>},{<ab>}}").run(), Matchers.is(3L));
         //MatcherAssert.assertThat(new Day09().run(), Matchers.is(6611L));
     }
 
