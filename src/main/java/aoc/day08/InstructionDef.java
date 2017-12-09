@@ -23,6 +23,16 @@ public interface InstructionDef {
 
         private final ConditionDef condition;
 
+        static InstructionDef parse(final String input) {
+            final String[] ifsplit = input.split(" if ");
+            final String[] opsplit = ifsplit[0].trim().split("\\s+");
+            return new InstructionDef.Default(
+                opsplit[0],
+                new OperationDef.Default(opsplit[1], Long.parseLong(opsplit[2])),
+                ConditionDef.Default.parse(ifsplit[1])
+            );
+        }
+
     }
 
 }

@@ -54,6 +54,15 @@ public interface ConditionDef {
 
         private final ConditionDef.Type type;
 
+        static ConditionDef parse(final String input) {
+            final String[] split = input.trim().split("\\s+");
+            return new ConditionDef.Default(
+                split[0],
+                Long.parseLong(split[2]),
+                ConditionDef.Type.fromSymbol(split[1])
+            );
+        }
+
     }
 
 }
