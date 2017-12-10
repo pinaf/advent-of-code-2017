@@ -7,7 +7,12 @@ import org.junit.Test;
 public final class ChallengeTemplateTest {
 
     @Test
-    public void test() {
+    public void part1() {
+        MatcherAssert.assertThat(new ChallengeTemplate("1").run(), Matchers.is(0L));
+    }
+
+    @Test
+    public void part2() {
         MatcherAssert.assertThat(new ChallengeTemplate("1").run(), Matchers.is(0L));
     }
 
