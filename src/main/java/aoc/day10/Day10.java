@@ -11,38 +11,44 @@ public final class Day10 implements Challenge<Long> {
 
     private final int[] list;
 
-    private final int[] input;
+    private final int[] lengths;
 
     public Day10() {
-        this(new StdInput(10).read());
+        this(256, new StdInput(10).read());
     }
 
-    public Day10(final String input) {
+    public Day10(final int length, final String lengths) {
         this(
-            Arrays.stream(input.split(","))
+            length,
+            Arrays.stream(lengths.split(","))
                 .mapToInt(Integer::parseInt)
                 .toArray()
         );
     }
 
-    public Day10(final int[] input) {
-        this.input = input;
-        this.list = new int[256];
-        for (int idx = 0; idx < this.list.length; ++idx) {
-            this.list[idx] = idx;
-        }
+    public Day10(final int length, final int[] lengths) {
+        this.lengths = lengths;
+        this.list = Day10.buildList(length);
     }
 
     @Override
     public Long run() {
         int pos = 0;
         int skip = 0;
-        for (final int length : this.input) {
+        for (final int length : this.lengths) {
             this.reverse(pos, length);
             pos = (pos + length + skip) % this.list.length;
             skip++;
         }
         return (long) this.list[0] * (long) this.list[1];
+    }
+
+    private static int[] buildList(final int length) {
+        final int[] list = new int[length];
+        for (int idx = 0; idx < list.length; ++idx) {
+            list[idx] = idx;
+        }
+        return list;
     }
 
     private void reverse(final int pos, final int length) {

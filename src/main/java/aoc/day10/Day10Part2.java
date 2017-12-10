@@ -1,6 +1,7 @@
 package aoc.day10;
 
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import aoc.Challenge;
@@ -57,7 +58,7 @@ public final class Day10Part2 implements Challenge<String> {
             dense[block] = xor;
         }
         return Arrays.stream(dense)
-            .mapToObj(n -> String.format("%02X", n).toLowerCase())
+            .mapToObj(n -> String.format("%02X", n).toLowerCase(Locale.ENGLISH))
             .collect(Collectors.joining(""));
     }
 
