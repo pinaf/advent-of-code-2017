@@ -4,43 +4,52 @@ import java.util.Arrays;
 
 import aoc.Challenge;
 import aoc.StdInput;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public final class Day10 implements Challenge<Long> {
+public final class Day10<T> implements Challenge<T> {
 
     private final int[] list;
 
+    private final Solution<T> solution;
+
+    private final int rounds;
+
     private final int[] lengths;
 
-    public Day10() {
-        this(256, new StdInput(10).read());
+    Day10(final Solution<T> solution, final InputTransform transform, final int rounds) {
+        this(solution, transform, 256, new StdInput(10).read(), rounds);
     }
 
-    public Day10(final int length, final String lengths) {
+    Day10(final Solution<T> solution, final InputTransform transform, final int length, final String lengths, final int rounds) {
         this(
+            solution,
+            transform,
             length,
             Arrays.stream(lengths.split(","))
                 .mapToInt(Integer::parseInt)
-                .toArray()
+                .toArray(),
+            rounds
         );
     }
 
-    public Day10(final int length, final int[] lengths) {
-        this.lengths = lengths;
+    Day10(final Solution<T> solution, final InputTransform transform, final int length, final int[] lengths, final int rounds) {
+        this.solution = solution;
+        this.rounds = rounds;
+        this.lengths = transform.apply(lengths);
         this.list = Day10.buildList(length);
     }
 
     @Override
-    public Long run() {
+    public T run() {
         int pos = 0;
         int skip = 0;
-        for (final int length : this.lengths) {
-            this.reverse(pos, length);
-            pos = (pos + length + skip) % this.list.length;
-            skip++;
+        for (int round = 1; round <= this.rounds; ++round) {
+            for (final int length : this.lengths) {
+                this.reverse(pos, length);
+                pos = (pos + length + skip) % this.list.length;
+                skip++;
+            }
         }
-        return (long) this.list[0] * (long) this.list[1];
+        return this.solution.apply(this.list);
     }
 
     private static int[] buildList(final int length) {

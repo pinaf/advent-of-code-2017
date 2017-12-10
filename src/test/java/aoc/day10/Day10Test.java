@@ -8,8 +8,8 @@ public final class Day10Test {
 
     @Test
     public void part1() {
-        MatcherAssert.assertThat(new Day10(5, new int[] {3, 4, 1, 5}).run(), Matchers.is(12L));
-        MatcherAssert.assertThat(new Day10().run(), Matchers.is(3770L));
+        MatcherAssert.assertThat(new Day10Part1(5, new int[] {3, 4, 1, 5}).run(), Matchers.is(12L));
+        MatcherAssert.assertThat(new Day10Part1().run(), Matchers.is(3770L));
     }
 
     @Test
