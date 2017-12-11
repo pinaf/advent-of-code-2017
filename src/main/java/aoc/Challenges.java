@@ -22,6 +22,7 @@ import aoc.day09.Day09Part1;
 import aoc.day09.Day09Part2;
 import aoc.day10.Day10Part1;
 import aoc.day10.Day10Part2;
+import aoc.day11.Day11;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -53,7 +54,8 @@ public final class Challenges {
             new Day09Part1(),
             new Day09Part2(),
             new Day10Part1(),
-            new Day10Part2()
+            new Day10Part2(),
+            new Day11()
         ).forEach(challenge -> Challenges.log.info("{}: {}", challenge.name(), challenge.run()));
     }
 
