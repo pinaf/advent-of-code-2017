@@ -7,14 +7,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public final class Day11 implements Challenge<Integer> {
 
+    private final DistanceFunction distance = new DistanceFunction.StepCounting();
+
+    private final Solution solution;
+
     private final String[] input;
 
-    public Day11() {
-        this(new StdInput(11).read());
+    Day11(final Solution solution) {
+        this(solution, new StdInput(11).read());
     }
 
-    public Day11(final String input) {
+    Day11(final Solution solution, final String input) {
         this(
+            solution,
             input.split(",")
         );
     }
@@ -23,7 +28,6 @@ public final class Day11 implements Challenge<Integer> {
     public Integer run() {
         int x = 0;
         int y = 0;
-        int max = 0;
         for (final String current : this.input) {
             switch (current) {
                 case "n":
@@ -47,35 +51,9 @@ public final class Day11 implements Challenge<Integer> {
                     x -= 1;
                     break;
             }
-            final int distance = this.countStepsFromOrigin(x, y);
-            if (distance > max) {
-                max = distance;
-            }
+            this.solution.updateDistance(this.distance.get(x, y));
         }
-        return max;
-        //return this.countStepsFromOrigin(x, y);
-    }
-
-    private int countStepsFromOrigin(final int x, final int y) {
-        if (x < 0) {
-            return this.countStepsFromOrigin(-x, -y);
-        } else if (y < 0) {
-            return this.countStepsFromOrigin(x, x - y);
-        } else {
-            return this.countSteps(0, 0, x, y);
-        }
-    }
-
-    private int countSteps(final int a, final int b, final int x, final int y) {
-        if (a < x) {
-            if (b < y) {
-                return 1 + this.countSteps(a + 1, b + 1, x, y);
-            } else {
-                return x - a;
-            }
-        } else {
-            return y - b;
-        }
+        return this.solution.get();
     }
 
 }
