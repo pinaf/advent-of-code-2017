@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public final class Day12Test {
 
-    private final String input =
+    private static final String INPUT =
         "0 <-> 2\n" +
         "1 <-> 1\n" +
         "2 <-> 0, 3, 4\n" +
@@ -17,12 +17,14 @@ public final class Day12Test {
 
     @Test
     public void part1() {
-        MatcherAssert.assertThat(new Day12(this.input).run(), Matchers.is(6L));
+        MatcherAssert.assertThat(new Day12Part1(Day12Test.INPUT).run(), Matchers.is(6L));
+        MatcherAssert.assertThat(new Day12Part1().run(), Matchers.is(152L));
     }
 
     @Test
     public void part2() {
-        MatcherAssert.assertThat(new Day12(this.input).run(), Matchers.is(2L));
+        MatcherAssert.assertThat(new Day12Part2(Day12Test.INPUT).run(), Matchers.is(2L));
+        MatcherAssert.assertThat(new Day12Part2().run(), Matchers.is(186L));
     }
 
 }
