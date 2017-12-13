@@ -9,27 +9,27 @@ public final class Day02Test {
     @Test
     public void part1() {
         MatcherAssert.assertThat(
-            new Day02Part1(
+            new Day02(
                 "5 1 9 5\n" +
                 "7 5 3\n" +
                 "2 4 6 8"
-            ).run(),
+            ).part1(),
             Matchers.is(18L)
         );
-        MatcherAssert.assertThat(new Day02Part1().run(), Matchers.is(42299L));
+        MatcherAssert.assertThat(new Day02().part1(), Matchers.is(42299L));
     }
 
     @Test
     public void part2() {
         MatcherAssert.assertThat(
-            new Day02Part2(
+            new Day02(
                 "5 9 2 8\n" +
                 "9 4 7 3\n" +
                 "3 8 6 5\n"
-            ).run(),
+            ).part2(),
             Matchers.is(9L)
         );
-        MatcherAssert.assertThat(new Day02Part2().run(), Matchers.is(277L));
+        MatcherAssert.assertThat(new Day02().part2(), Matchers.is(277L));
     }
 
 }

@@ -1,53 +1,26 @@
 package aoc.day01;
 
-import java.util.Arrays;
-import java.util.function.Function;
-import java.util.regex.Pattern;
-
-import aoc.Challenge;
 import aoc.StdInput;
+import aoc.TwoPartChallenge;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public final class Day01 implements Challenge<Long> {
+public final class Day01 implements TwoPartChallenge<Long, Long> {
 
-    private static final Pattern PATTERN = Pattern.compile("(?!^)");
+    private final String input;
 
-    private final int[] input;
-
-    private final Function<Integer, Integer> neighbor;
-
-    Day01(final NeighborStrategy strategy) {
-        this(new StdInput(1).read(), strategy);
-    }
-
-    Day01(final String input, final NeighborStrategy strategy) {
-        this(
-            Arrays
-                .stream(Day01.PATTERN.split(input.trim()))
-                .mapToInt(Integer::parseUnsignedInt)
-                .toArray(),
-            strategy
-        );
-    }
-
-    Day01(final int[] input, final NeighborStrategy strategy) {
-        this(input, strategy.apply(input.length));
+    public Day01() {
+        this(new StdInput(1).read());
     }
 
     @Override
-    public Long run() {
-        if (this.input.length < 2) {
-            return 0L;
-        }
-        long sum = 0L;
-        for (int idx = 0; idx < this.input.length; ++idx) {
-            final int current = this.input[idx];
-            if (current == this.input[this.neighbor.apply(idx)]) {
-                sum += (long) current;
-            }
-        }
-        return sum;
+    public Long part1() {
+        return new Day01Common(this.input, new NeighborStrategy.Next()).run();
+    }
+
+    @Override
+    public Long part2() {
+        return new Day01Common(this.input, new NeighborStrategy.HalfAround()).run();
     }
 
 }

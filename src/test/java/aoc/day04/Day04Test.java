@@ -9,51 +9,51 @@ public final class Day04Test {
     @Test
     public void part1() {
         MatcherAssert.assertThat(
-            new Day04Part1("aa bb cc dd ee").run(),
+            new Day04("aa bb cc dd ee").part1(),
             Matchers.is(1L)
         );
         MatcherAssert.assertThat(
-            new Day04Part1("aa bb cc dd aa").run(),
+            new Day04("aa bb cc dd aa").part1(),
             Matchers.is(0L)
         );
         MatcherAssert.assertThat(
-            new Day04Part1("aa bb cc dd aaa").run(),
+            new Day04("aa bb cc dd aaa").part1(),
             Matchers.is(1L)
         );
         MatcherAssert.assertThat(
-            new Day04Part1(
+            new Day04(
                 "aa bb cc dd ee\n" +
                 "aa bb cc dd aa\n" +
                 "aa bb cc dd aaa\n"
-            ).run(),
+            ).part1(),
             Matchers.is(2L)
         );
-        MatcherAssert.assertThat(new Day04Part1().run(), Matchers.is(455L));
+        MatcherAssert.assertThat(new Day04().part1(), Matchers.is(455L));
     }
 
     @Test
     public void part2() {
         MatcherAssert.assertThat(
-            new Day04Part2("abcde fghij").run(),
+            new Day04("abcde fghij").part2(),
             Matchers.is(1L)
         );
         MatcherAssert.assertThat(
-            new Day04Part2("abcde xyz ecdab").run(),
+            new Day04("abcde xyz ecdab").part2(),
             Matchers.is(0L)
         );
         MatcherAssert.assertThat(
-            new Day04Part2("a ab abc abd abf abj").run(),
+            new Day04("a ab abc abd abf abj").part2(),
             Matchers.is(1L)
         );
         MatcherAssert.assertThat(
-            new Day04Part2("iiii oiii ooii oooi oooo").run(),
+            new Day04("iiii oiii ooii oooi oooo").part2(),
             Matchers.is(1L)
         );
         MatcherAssert.assertThat(
-            new Day04Part2("oiii ioii iioi iiio").run(),
+            new Day04("oiii ioii iioi iiio").part2(),
             Matchers.is(0L)
         );
-        MatcherAssert.assertThat(new Day04Part2().run(), Matchers.is(186L));
+        MatcherAssert.assertThat(new Day04().part2(), Matchers.is(186L));
     }
 
 }

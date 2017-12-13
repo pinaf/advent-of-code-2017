@@ -2,76 +2,50 @@ package aoc.day10;
 
 import java.util.Arrays;
 
-import aoc.Challenge;
 import aoc.StdInput;
+import aoc.TwoPartChallenge;
+import lombok.RequiredArgsConstructor;
 
-public final class Day10<T> implements Challenge<T> {
+@RequiredArgsConstructor
+public final class Day10 implements TwoPartChallenge<Long, String> {
 
-    private final int[] list;
+    private static final int[] TAIL = {17, 31, 73, 47, 23};
 
-    private final Solution<T> solution;
+    private final int length;
 
-    private final int rounds;
+    private final String input;
 
-    private final int[] lengths;
-
-    Day10(final Solution<T> solution, final InputTransform transform, final int rounds) {
-        this(solution, transform, 256, new StdInput(10).read(), rounds);
+    public Day10() {
+        this(new StdInput(10).read());
     }
 
-    Day10(final Solution<T> solution, final InputTransform transform, final int length, final String lengths, final int rounds) {
-        this(
-            solution,
-            transform,
-            length,
-            Arrays.stream(lengths.split(","))
-                .mapToInt(Integer::parseInt)
-                .toArray(),
-            rounds
-        );
-    }
-
-    Day10(final Solution<T> solution, final InputTransform transform, final int length, final int[] lengths, final int rounds) {
-        this.solution = solution;
-        this.rounds = rounds;
-        this.lengths = transform.apply(lengths);
-        this.list = Day10.buildList(length);
+    public Day10(final String input) {
+        this(256, input);
     }
 
     @Override
-    public T run() {
-        int pos = 0;
-        int skip = 0;
-        for (int round = 1; round <= this.rounds; ++round) {
-            for (final int length : this.lengths) {
-                this.reverse(pos, length);
-                pos = (pos + length + skip) % this.list.length;
-                skip++;
-            }
-        }
-        return this.solution.apply(this.list);
+    public Long part1() {
+        return new Day10Common<>(
+            new Solution.ProductOfFirstTwo(),
+            new InputTransform.Identity(),
+            this.length,
+            Arrays.stream(this.input.split(","))
+                .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .toArray(),
+            1
+        ).run();
     }
 
-    private static int[] buildList(final int length) {
-        final int[] list = new int[length];
-        for (int idx = 0; idx < list.length; ++idx) {
-            list[idx] = idx;
-        }
-        return list;
-    }
-
-    private void reverse(final int pos, final int length) {
-        final int[] copy = new int[length];
-        int current = pos;
-        for (int idx = 0; idx < length; ++idx) {
-            copy[idx] = this.list[current];
-            current = (current + 1) % this.list.length;
-        }
-        current = pos;
-        for (int idx = 0; idx < length; ++idx) {
-            this.list[current] = copy[length - 1 - idx];
-            current = (current + 1) % this.list.length;
-        }
+    @Override
+    public String part2() {
+        return new Day10Common<>(
+            new Solution.DenseHash(),
+            new InputTransform.AppendTail(Day10.TAIL),
+            this.length,
+            this.input.chars().toArray(),
+            64
+        ).run();
     }
 
 }

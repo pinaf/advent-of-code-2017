@@ -1,57 +1,26 @@
 package aoc.day09;
 
-import aoc.Challenge;
 import aoc.StdInput;
+import aoc.TwoPartChallenge;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public final class Day09 implements Challenge<Long>  {
+public final class Day09 implements TwoPartChallenge<Long, Long> {
 
-    private final Solution solution;
+    private final String input;
 
-    private final char[] input;
-
-    private final State state = new State.Default();
-
-    Day09(final Solution solution) {
-        this(solution, new StdInput(9).read());
-    }
-
-    Day09(final Solution solution, final String input) {
-        this(solution, input.toCharArray());
+    public Day09() {
+        this(new StdInput(9).read());
     }
 
     @Override
-    public Long run() {
-        boolean garbage = false;
-        boolean ignore = false;
-        int depth = 0;
-        for (final char current : this.input) {
-            if (garbage) {
-                if (ignore) {
-                    ignore = false;
-                } else {
-                    if (current == '!') {
-                        ignore = true;
-                    } else if (current == '>') {
-                        garbage = false;
-                    } else {
-                        this.state.garbageSeen();
-                    }
-                }
-            } else {
-                if (current == '<') {
-                    garbage = true;
-                }
-                if (current == '{') {
-                    depth += 1;
-                    this.state.newGroupSeen(depth);
-                } else if (current == '}') {
-                    depth -= 1;
-                }
-            }
-        }
-        return this.solution.apply(this.state);
+    public Long part1() {
+        return new Day09Common(new Solution.TotalGroupScore(), this.input).run();
+    }
+
+    @Override
+    public Long part2() {
+        return new Day09Common(new Solution.TotalGarbageSeen(), this.input).run();
     }
 
 }

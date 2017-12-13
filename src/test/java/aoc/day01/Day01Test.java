@@ -8,21 +8,21 @@ public final class Day01Test {
 
     @Test
     public void part1() {
-        MatcherAssert.assertThat(new Day01Part1("1122").run(), Matchers.is(3L));
-        MatcherAssert.assertThat(new Day01Part1("1111").run(), Matchers.is(4L));
-        MatcherAssert.assertThat(new Day01Part1("1234").run(), Matchers.is(0L));
-        MatcherAssert.assertThat(new Day01Part1("91212129").run(), Matchers.is(9L));
-        MatcherAssert.assertThat(new Day01Part1().run(), Matchers.is(1136L));
+        MatcherAssert.assertThat(new Day01("1122").part1(), Matchers.is(3L));
+        MatcherAssert.assertThat(new Day01("1111").part1(), Matchers.is(4L));
+        MatcherAssert.assertThat(new Day01("1234").part1(), Matchers.is(0L));
+        MatcherAssert.assertThat(new Day01("91212129").part1(), Matchers.is(9L));
+        MatcherAssert.assertThat(new Day01().part1(), Matchers.is(1136L));
     }
 
     @Test
     public void part2() {
-        MatcherAssert.assertThat(new Day01Part2("1212").run(), Matchers.is(6L));
-        MatcherAssert.assertThat(new Day01Part2("1221").run(), Matchers.is(0L));
-        MatcherAssert.assertThat(new Day01Part2("123425").run(), Matchers.is(4L));
-        MatcherAssert.assertThat(new Day01Part2("123123").run(), Matchers.is(12L));
-        MatcherAssert.assertThat(new Day01Part2("12131415").run(), Matchers.is(4L));
-        MatcherAssert.assertThat(new Day01Part2().run(), Matchers.is(1092L));
+        MatcherAssert.assertThat(new Day01("1212").part2(), Matchers.is(6L));
+        MatcherAssert.assertThat(new Day01("1221").part2(), Matchers.is(0L));
+        MatcherAssert.assertThat(new Day01("123425").part2(), Matchers.is(4L));
+        MatcherAssert.assertThat(new Day01("123123").part2(), Matchers.is(12L));
+        MatcherAssert.assertThat(new Day01("12131415").part2(), Matchers.is(4L));
+        MatcherAssert.assertThat(new Day01().part2(), Matchers.is(1092L));
     }
 
 }

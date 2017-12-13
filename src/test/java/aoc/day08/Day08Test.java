@@ -14,10 +14,10 @@ public final class Day08Test {
 
     @Test
     public void test() {
-        MatcherAssert.assertThat(new Day08Part1(Day08Test.INPUT).run(), Matchers.is(1L));
-        MatcherAssert.assertThat(new Day08Part1().run(), Matchers.is(6611L));
-        MatcherAssert.assertThat(new Day08Part2(Day08Test.INPUT).run(), Matchers.is(10L));
-        MatcherAssert.assertThat(new Day08Part2().run(), Matchers.is(6619L));
+        MatcherAssert.assertThat(new Day08(Day08Test.INPUT).part1(), Matchers.is(1L));
+        MatcherAssert.assertThat(new Day08().part1(), Matchers.is(6611L));
+        MatcherAssert.assertThat(new Day08(Day08Test.INPUT).part2(), Matchers.is(10L));
+        MatcherAssert.assertThat(new Day08().part2(), Matchers.is(6619L));
     }
 
 }

@@ -12,7 +12,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @RequiredArgsConstructor
-public final class Day13 implements TwoPartChallenge {
+public final class Day13 implements TwoPartChallenge<Long, Long> {
 
     private final List<Day13.Layer> layers;
 
@@ -29,12 +29,7 @@ public final class Day13 implements TwoPartChallenge {
     }
 
     @Override
-    public String name() {
-        return "Day 13";
-    }
-
-    @Override
-    public long part1() {
+    public Long part1() {
         long severity = 0L;
         for (final Day13.Layer layer : this.layers) {
             if (layer.onTopAtTime((long) layer.depth())) {
@@ -45,7 +40,7 @@ public final class Day13 implements TwoPartChallenge {
     }
 
     @Override
-    public long part2() {
+    public Long part2() {
         boolean pass = false;
         long delay = 0L;
         while (!pass) {

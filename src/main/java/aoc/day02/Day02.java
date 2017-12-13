@@ -1,60 +1,26 @@
 package aoc.day02;
 
-import java.util.Arrays;
-import java.util.regex.Pattern;
-
-import aoc.Challenge;
 import aoc.StdInput;
-import lombok.Data;
+import aoc.TwoPartChallenge;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
 
 @RequiredArgsConstructor
-public final class Day02 implements Challenge<Long> {
+public final class Day02 implements TwoPartChallenge<Long, Long> {
 
-    private final Strategy strategy;
+    private final String input;
 
-    private final Day02.Row[] rows;
-
-    public Day02(final Strategy strategy) {
-        this(strategy, new StdInput(2).read());
-    }
-
-    Day02(final Strategy strategy, final String input) {
-        this(
-            strategy,
-            Arrays.stream(input.split("\n"))
-                .map(Day02.Row::new)
-                .toArray(Day02.Row[]::new)
-        );
+    public Day02() {
+        this(new StdInput(2).read());
     }
 
     @Override
-    public Long run() {
-        long checksum = 0L;
-        for (final Day02.Row row : this.rows) {
-            checksum += this.strategy.apply(row);
-        }
-        return checksum;
+    public Long part1() {
+        return new Day02Common(new Strategy.MinMax(), this.input).run();
     }
 
-    @Data
-    @Accessors(fluent = true)
-    @RequiredArgsConstructor
-    public static final class Row {
-
-        private static final Pattern PATTERN = Pattern.compile("(\\s)+");
-
-        private final int[] data;
-
-        public Row(final CharSequence input) {
-            this(
-                Arrays.stream(Day02.Row.PATTERN.split(input))
-                    .mapToInt(Integer::parseUnsignedInt)
-                    .toArray()
-            );
-        }
-
+    @Override
+    public Long part2() {
+        return new Day02Common(new Strategy.EvenlyDivisible(), this.input).run();
     }
 
 }

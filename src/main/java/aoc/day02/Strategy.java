@@ -2,12 +2,9 @@ package aoc.day02;
 
 import java.util.function.Function;
 
-import aoc.day02.Day02.Row;
-
 public interface Strategy extends Function<Row, Long> {
 
     final class MinMax implements Strategy {
-
         @Override
         public Long apply(final Row row) {
             final int[] data = row.data();
@@ -27,11 +24,9 @@ public interface Strategy extends Function<Row, Long> {
             }
             return (long) max - (long) min;
         }
-
     }
 
     final class EvenlyDivisible implements Strategy {
-
         @Override
         public Long apply(final Row row) {
             final int[] data = row.data();
@@ -49,7 +44,6 @@ public interface Strategy extends Function<Row, Long> {
             }
             return 0L;
         }
-
     }
 
 }

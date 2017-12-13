@@ -1,11 +1,13 @@
 package aoc;
 
-public interface TwoPartChallenge {
+public interface TwoPartChallenge<R, S> {
 
-    String name();
+    default String name() {
+        return this.getClass().getSimpleName();
+    }
 
-    long part1();
+    R part1();
 
-    long part2();
+    S part2();
 
 }

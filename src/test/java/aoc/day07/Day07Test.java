@@ -44,15 +44,15 @@ public final class Day07Test {
 
     @Test
     public void part1() {
-        MatcherAssert.assertThat(new Day07Part1(Day07Test.INPUT).run(), Matchers.is("tknk"));
-        MatcherAssert.assertThat(new Day07Part1().run(), Matchers.is("eugwuhl"));
-        MatcherAssert.assertThat(new Day07<>(node -> node, Day07Test.INPUT).run(), Matchers.is(this.structure));
+        MatcherAssert.assertThat(new Day07(Day07Test.INPUT).part1(), Matchers.is("tknk"));
+        MatcherAssert.assertThat(new Day07().part1(), Matchers.is("eugwuhl"));
+        MatcherAssert.assertThat(new Day07Common<>(node -> node, Day07Test.INPUT).run(), Matchers.is(this.structure));
     }
 
     @Test
     public void part2() {
-        MatcherAssert.assertThat(new Day07Part2(Day07Test.INPUT).run(), Matchers.is(60L));
-        MatcherAssert.assertThat(new Day07Part2().run(), Matchers.is(420L));
+        MatcherAssert.assertThat(new Day07(Day07Test.INPUT).part2(), Matchers.is(60L));
+        MatcherAssert.assertThat(new Day07().part2(), Matchers.is(420L));
     }
 
 }

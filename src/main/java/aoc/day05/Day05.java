@@ -3,26 +3,23 @@ package aoc.day05;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-import aoc.Challenge;
 import aoc.StdInput;
+import aoc.TwoPartChallenge;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public final class Day05 implements Challenge<Long> {
+public final class Day05 implements TwoPartChallenge<Long, Long> {
 
     private static final Pattern PATTERN = Pattern.compile("(\\s)+");
 
-    private final Operation operation;
-
     private final int[] jumps;
 
-    Day05(final Operation operation) {
-        this(operation, new StdInput(5).read());
+    public Day05() {
+        this(new StdInput(5).read());
     }
 
-    Day05(final Operation operation, final CharSequence input) {
+    public Day05(final CharSequence input) {
         this(
-            operation,
             Arrays.stream(Day05.PATTERN.split(input))
                 .mapToInt(Integer::parseInt)
                 .toArray()
@@ -30,16 +27,13 @@ public final class Day05 implements Challenge<Long> {
     }
 
     @Override
-    public Long run() {
-        long steps = 0L;
-        int offset = 0;
-        while (offset >= 0 && offset < this.jumps.length) {
-            final int jump = this.jumps[offset];
-            this.jumps[offset] = this.operation.apply(jump);
-            offset += jump;
-            steps++;
-        }
-        return steps;
+    public Long part1() {
+        return new Day05Common(new Operation.Increment(), this.jumps).run();
+    }
+
+    @Override
+    public Long part2() {
+        return new Day05Common(new Operation.Conditional(), this.jumps).run();
     }
 
 }
