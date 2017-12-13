@@ -21,8 +21,8 @@ public interface Layer {
     int scanner();
 
     @Data
-    @Accessors(fluent = true)
     @ToString
+    @Accessors(fluent = true)
     final class Default implements Layer {
 
         private final int depth;

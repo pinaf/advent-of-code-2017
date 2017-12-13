@@ -4,16 +4,16 @@ import aoc.Challenge;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public final class Day13Part2 implements Challenge<Long> {
+public final class Day13SimulatedPart2 implements Challenge<Long> {
 
-    private final Day13 challenge;
+    private final Day13Simulated challenge;
 
-    public Day13Part2() {
-        this(new Day13(true));
+    public Day13SimulatedPart2() {
+        this(new Day13Simulated(true));
     }
 
-    public Day13Part2(final String input) {
-        this(new Day13(true, input));
+    public Day13SimulatedPart2(final String input) {
+        this(new Day13Simulated(true, input));
     }
 
     @Override

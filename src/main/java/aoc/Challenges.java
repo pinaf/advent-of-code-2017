@@ -26,8 +26,7 @@ import aoc.day11.Day11Part1;
 import aoc.day11.Day11Part2;
 import aoc.day12.Day12Part1;
 import aoc.day12.Day12Part2;
-import aoc.day13.Day13Part1;
-import aoc.day13.Day13Part2;
+import aoc.day13.Day13;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -63,10 +62,14 @@ public final class Challenges {
             new Day11Part1(),
             new Day11Part2(),
             new Day12Part1(),
-            new Day12Part2(),
-            new Day13Part1(),
-            new Day13Part2()
+            new Day12Part2()
         ).forEach(challenge -> Challenges.log.info("{}: {}", challenge.name(), challenge.run()));
+        Stream.of(
+            new Day13()
+        ).forEach(challenge -> {
+            Challenges.log.info("{}: {}", challenge.name(), challenge.part1());
+            Challenges.log.info("{}: {}", challenge.name(), challenge.part2());
+        });
     }
 
 }

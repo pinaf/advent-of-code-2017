@@ -14,14 +14,18 @@ public final class Day13Test {
 
     @Test
     public void part1() {
-        MatcherAssert.assertThat(new Day13Part1(Day13Test.INPUT).run(), Matchers.is(24L));
-        MatcherAssert.assertThat(new Day13Part1().run(), Matchers.is(1300L));
+        MatcherAssert.assertThat(new Day13SimulatedPart1(Day13Test.INPUT).run(), Matchers.is(24L));
+        MatcherAssert.assertThat(new Day13SimulatedPart1().run(), Matchers.is(1300L));
+        MatcherAssert.assertThat(new Day13(Day13Test.INPUT).part1(), Matchers.is(24L));
+        MatcherAssert.assertThat(new Day13().part1(), Matchers.is(1300L));
     }
 
     @Test
     public void part2() {
-        MatcherAssert.assertThat(new Day13Part2(Day13Test.INPUT).run(), Matchers.is(10L));
-        MatcherAssert.assertThat(new Day13Part2().run(), Matchers.is(3870382L));
+        MatcherAssert.assertThat(new Day13SimulatedPart2(Day13Test.INPUT).run(), Matchers.is(10L));
+        MatcherAssert.assertThat(new Day13SimulatedPart2().run(), Matchers.is(3870382L));
+        MatcherAssert.assertThat(new Day13(Day13Test.INPUT).part2(), Matchers.is(10L));
+        MatcherAssert.assertThat(new Day13().part2(), Matchers.is(3870382L));
     }
 
 }
