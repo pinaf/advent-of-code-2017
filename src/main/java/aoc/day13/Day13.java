@@ -1,6 +1,8 @@
 package aoc.day13;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,54 +14,53 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-public final class Day13 implements Challenge<Long> {
+public final class Day13 implements Challenge<List<Layer>> {
+
+    private final boolean halt;
 
     private final Map<Integer, Layer> layers;
 
-    public Day13() {
-        this(new StdInput(13).read());
+    Day13(final boolean halt) {
+        this(halt, new StdInput(13).read());
     }
 
-    public Day13(final String input) {
+    Day13(final boolean halt, final String input) {
         this(
+            halt,
             Arrays.stream(input.split("\n"))
                 .map(Layer.Default::new)
                 .collect(Collectors.toMap(Layer::depth, layer -> layer))
         );
     }
 
-    @Override
-    public Long run() {
-        final int max = this.lastDepth();
-        log.info("max: {}", max);
-        long delay = 0L;
-        this.layers.values().forEach(Layer::reset);
-        while (this.caught(max, delay) >= 0) {
-            this.layers.values().forEach(Layer::reset);
-            delay ++;
-        }
-        return delay;
+    public void resetAnddelay(final long delay) {
+        this.layers.values().forEach(layer -> {
+            layer.reset();
+            layer.tick(delay);
+        });
     }
 
-    private int caught(final int max, final long delay) {
-        //long severity = 0L;
-        //log.info("Delay {}", delay);
-        this.layers.values().forEach(layer -> layer.tick(delay));
+    @Override
+    public List<Layer> run() {
+        return this.caughtLayers(this.lastDepth());
+    }
+
+    private List<Layer> caughtLayers(final int max) {
+        final List<Layer> catches = new ArrayList<>(this.layers.size());
         for (int depth = 0; depth <= max; ++depth) {
-            //log.info("Depth {}", depth);
-            //Arrays.stream(this.input).forEach(l -> log.info("Layer {}", l));
-            final Optional<Layer> match = this.findLayerByDepth(depth);
+            final Optional<Layer> match = this.layerAtDepth(depth);
             if (match.isPresent()) {
                 final Layer layer = match.get();
                 if (layer.scanner() == 0) {
-                    //severity += layer.depth() * layer.range();
-                    log.info("Delay {} caught at {}", delay, depth);
-                    return depth;
+                    catches.add(layer);
+                    if (this.halt) {
+                        return catches;
+                    }
                 }
             }
             this.tick();
         }
-        return -1;
+        return catches;
     }
 
     private void tick() {
@@ -70,7 +71,7 @@ public final class Day13 implements Challenge<Long> {
         return this.layers.values().stream().mapToInt(Layer::depth).max().getAsInt();
     }
 
-    private Optional<Layer> findLayerByDepth(final int depth) {
+    private Optional<Layer> layerAtDepth(final int depth) {
         return Optional.ofNullable(this.layers.get(depth));
     }
 

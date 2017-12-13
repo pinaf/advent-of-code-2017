@@ -10,13 +10,15 @@ public interface Layer {
 
     int range();
 
+    long severity();
+
+    void reset();
+
     void tick();
 
     void tick(long time);
 
     int scanner();
-
-    void reset();
 
     @Data
     @Accessors(fluent = true)
@@ -35,6 +37,11 @@ public interface Layer {
             final String[] split = input.split(": ");
             this.depth = Integer.parseInt(split[0]);
             this.range = Integer.parseInt(split[1]);
+        }
+
+        @Override
+        public long severity() {
+            return (long) this.depth * (long) this.range;
         }
 
         @Override
