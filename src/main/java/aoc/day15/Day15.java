@@ -16,38 +16,28 @@ public final class Day15 implements TwoPartChallenge<Long, Long> {
 
     @Override
     public Long part1() {
-        long judge = 0L;
-        long valueA = seedA;
-        long valueB = seedB;
-        for (long idx = 0L; idx < 40000000L; ++idx) {
-            valueA = (valueA * 16807L) % 2147483647L;
-            valueB = (valueB * 48271L) % 2147483647L;
-            if ((valueA & 0xffff) == (valueB & 0xffff)) {
-                judge++;
-            }
-        }
-        return judge;
+        return this.count(
+            new Generator.Simple(this.seedA, 16807L, 2147483647L),
+            new Generator.Simple(this.seedB, 48271L, 2147483647L),
+            40000000L
+        );
     }
 
     @Override
     public Long part2() {
-        long judge = 0L;
-        long valueA = seedA;
-        long valueB = seedB;
-        for (long idx = 0L; idx < 5000000L; ++idx) {
-            valueA = (valueA * 16807L) % 2147483647L;
-            while (valueA % 4L != 0L) {
-                valueA = (valueA * 16807L) % 2147483647L;
-            }
-            valueB = (valueB * 48271L) % 2147483647L;
-            while (valueB % 8L != 0L) {
-                valueB = (valueB * 48271L) % 2147483647L;
-            }
-            if ((valueA & 0xffff) == (valueB & 0xffff)) {
-                judge++;
-            }
+        return this.count(
+            new Generator.Selective(new Generator.Simple(this.seedA, 16807L, 2147483647L), 4L),
+            new Generator.Selective(new Generator.Simple(this.seedB, 48271L, 2147483647L), 8L),
+            5000000L
+        );
+    }
+
+    private long count(final Generator genA, final Generator genB, final long iterations) {
+        final Judge judge = new Judge.Lower16Bits();
+        for (long idx = 0L; idx < iterations; ++idx) {
+            judge.compare(genA, genB);
         }
-        return judge;
+        return judge.count();
     }
 
 }
