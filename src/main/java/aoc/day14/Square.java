@@ -5,14 +5,22 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Data
-@Accessors(fluent = true)
-@ToString
-@EqualsAndHashCode
-final class Square {
+public interface Square {
 
-    private final int row;
+    int row();
 
-    private final int col;
+    int col();
+
+    @Data
+    @Accessors(fluent = true)
+    @ToString
+    @EqualsAndHashCode
+    final class Default implements Square {
+
+        private final int row;
+
+        private final int col;
+
+    }
 
 }

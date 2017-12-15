@@ -14,16 +14,9 @@ public interface Solution<T> extends Function<int[], T> {
         }
     }
 
-    final class DenseHash implements Solution<String> {
-
+    final class DenseHash implements Solution<int[]> {
         @Override
-        public String apply(final int[] list) {
-            return Arrays.stream(Solution.DenseHash.dense(list))
-                .mapToObj(n -> String.format("%02X", n).toLowerCase(Locale.ENGLISH))
-                .collect(Collectors.joining(""));
-        }
-
-        private static int[] dense(final int[] list) {
+        public int[] apply(final int[] list) {
             final int[] dense = new int[16];
             for (int block = 0; block < 16; ++block) {
                 int xor = list[16 * block];
@@ -34,7 +27,15 @@ public interface Solution<T> extends Function<int[], T> {
             }
             return dense;
         }
+    }
 
+    final class HashHex implements Solution<String> {
+        @Override
+        public String apply(final int[] list) {
+            return Arrays.stream(list)
+                .mapToObj(n -> String.format("%02X", n).toLowerCase(Locale.ENGLISH))
+                .collect(Collectors.joining(""));
+        }
     }
 
 }

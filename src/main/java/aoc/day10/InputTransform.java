@@ -24,10 +24,6 @@ public interface InputTransform extends Function<int[], int[]> {
             System.arraycopy(input, 0, edited, 0, input.length);
             System.arraycopy(this.tail, 0, edited, input.length, this.tail.length);
             return edited;
-            /*return IntStream.concat(
-                Arrays.stream(input),
-                Arrays.stream(this.tail)
-            ).toArray();*/
         }
 
     }

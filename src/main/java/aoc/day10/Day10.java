@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public final class Day10 implements TwoPartChallenge<Long, String> {
 
-    private static final int[] TAIL = {17, 31, 73, 47, 23};
-
     private final int length;
 
     private final String input;
@@ -27,24 +25,20 @@ public final class Day10 implements TwoPartChallenge<Long, String> {
     public Long part1() {
         return new Day10Common<>(
             new Solution.ProductOfFirstTwo(),
-            new InputTransform.Identity(),
-            this.length,
+            new KnotHash.Simple(this.length),
             Arrays.stream(this.input.split(","))
                 .map(String::trim)
                 .mapToInt(Integer::parseInt)
-                .toArray(),
-            1
+                .toArray()
         ).run();
     }
 
     @Override
     public String part2() {
         return new Day10Common<>(
-            new Solution.DenseHash(),
-            new InputTransform.AppendTail(Day10.TAIL),
-            this.length,
-            this.input.chars().toArray(),
-            64
+            new Solution.HashHex(),
+            new KnotHash.Dense(this.length, 64),
+            this.input.chars().toArray()
         ).run();
     }
 
