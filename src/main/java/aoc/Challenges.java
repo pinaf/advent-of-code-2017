@@ -17,6 +17,7 @@ import aoc.day12.Day12;
 import aoc.day13.Day13;
 import aoc.day14.Day14;
 import aoc.day15.Day15;
+import aoc.day16.Day16;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -43,7 +44,8 @@ public final class Challenges {
             new Day12(),
             new Day13(),
             new Day14(),
-            new Day15()
+            new Day15(),
+            new Day16()
         ).forEach(challenge -> {
             Challenges.log.info("{}: {}", challenge.name(), challenge.part1());
             Challenges.log.info("{}: {}", challenge.name(), challenge.part2());
