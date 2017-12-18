@@ -1,7 +1,5 @@
 package aoc;
 
-import java.util.stream.Stream;
-
 import aoc.day01.Day01;
 import aoc.day02.Day02;
 import aoc.day03.Day03;
@@ -19,6 +17,8 @@ import aoc.day14.Day14;
 import aoc.day15.Day15;
 import aoc.day16.Day16;
 import aoc.day17.Day17;
+import aoc.day18.Day18;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -47,7 +47,8 @@ public final class Challenges {
             new Day14(),
             new Day15(),
             new Day16(),
-            new Day17()
+            new Day17(),
+            new Day18()
         ).forEach(challenge -> {
             Challenges.log.info("{}: {}", challenge.name(), challenge.part1());
             Challenges.log.info("{}: {}", challenge.name(), challenge.part2());
