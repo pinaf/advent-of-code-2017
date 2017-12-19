@@ -12,14 +12,25 @@ public final class StdInput {
 
     private final int day;
 
+    private final boolean trim;
+
+    public StdInput(final int day) {
+        this(day, true);
+    }
+
     public String read() {
         try {
-            return IOUtils.toString(
+            final String input = IOUtils.toString(
                 StdInput.class.getResourceAsStream(
                     String.format("day%02d/day%02d.txt", this.day, this.day)
                 ),
                 Charset.defaultCharset()
-            ).trim();
+            );
+            if (this.trim) {
+                return input.trim();
+            } else {
+                return input;
+            }
         } catch (final IOException ex) {
             throw new IllegalStateException(ex);
         }
