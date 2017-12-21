@@ -53,6 +53,7 @@ public final class Challenges {
             new Day18(),
             new Day19(),
             new Day20()
+            //new Day21()
         ).forEach(challenge -> {
             Challenges.log.info("{}: {}", challenge.name(), challenge.part1());
             Challenges.log.info("{}: {}", challenge.name(), challenge.part2());
