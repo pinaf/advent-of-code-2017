@@ -15,12 +15,12 @@ public final class Day21Test {
     @Test
     public void part1() {
         MatcherAssert.assertThat(new Day21(2, this.input).part1(), Matchers.is(12L));
-        MatcherAssert.assertThat(new Day21(5).part1(), Matchers.is(155L));
+        MatcherAssert.assertThat(new Day21().part1(), Matchers.is(155L));
     }
 
     @Test
     public void part2() {
-        MatcherAssert.assertThat(new Day21(18).part2(), Matchers.is(2449665L));
+        MatcherAssert.assertThat(new Day21().part2(), Matchers.is(2449665L));
     }
 
 }

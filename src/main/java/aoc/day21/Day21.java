@@ -18,6 +18,10 @@ public final class Day21 implements TwoPartChallenge<Long, Long> {
 
     private final Rule[] rules;
 
+    public Day21() {
+        this(5);
+    }
+
     public Day21(final int iterations) {
         this(iterations, new StdInput(21).read());
     }
@@ -33,22 +37,26 @@ public final class Day21 implements TwoPartChallenge<Long, Long> {
 
     @Override
     public Long part1() {
-        log.info("Initial: \n{}", this.initial);
-        Pattern current = this.initial;
-        for (int iteration = 0; iteration < this.iterations; ++iteration) {
-            final List<Pattern> split = current.split().stream()
-                .map(this::transform)
-                .peek(p -> log.info("Split Transformed: \n{}", p))
-                .collect(Collectors.toList());
-            current = new Pattern.Composite(split);
-            log.info("Current: \n{}", current);
-        }
-        return current.pixelsOn();
+        return this.run(this.iterations);
     }
 
     @Override
     public Long part2() {
-        return this.part1();
+        return this.run(18);
+    }
+
+    private long run(final int iters) {
+        //log.info("Initial: \n{}", this.initial);
+        Pattern current = this.initial;
+        for (int iteration = 0; iteration < iters; ++iteration) {
+            final List<Pattern> split = current.split().stream()
+                .map(this::transform)
+                //.peek(p -> log.info("Split Transformed: \n{}", p))
+                .collect(Collectors.toList());
+            current = new Pattern.Composite(split);
+            //log.info("Current: \n{}", current);
+        }
+        return current.pixelsOn();
     }
 
     private Pattern transform(final Pattern pattern) {

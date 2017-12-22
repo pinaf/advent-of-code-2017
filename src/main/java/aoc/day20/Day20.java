@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,9 +50,9 @@ public final class Day20 implements TwoPartChallenge<Integer, Integer> {
             this.tick();
             time++;
             count = this.resolveCollisions();
-            if (count > 0L) {
-                Day20.log.info("Removed {} particles at time {}", count, time);
-            }
+            //if (count > 0L) {
+                //Day20.log.info("Removed {} particles at time {}", count, time);
+            //}
             if (this.particles.size() <= 1) {
                 break;
             }
@@ -92,13 +91,13 @@ public final class Day20 implements TwoPartChallenge<Integer, Integer> {
             final Set<ParticleState> collisions = this.collisions(particle);
             this.particles.removeAll(collisions);
             this.particles.remove(particle);
-            Day20.log.info(
+            /*Day20.log.info(
                 "Collision: {}",
                 Stream.concat(
                     Stream.of(particle.index()),
                     collisions.stream().map(ParticleState::index)
                 ).collect(Collectors.toSet())
-            );
+            );*/
             count += (long) collisions.size() + 1L;
             if (this.particles.size() <= 1) {
                 break;
