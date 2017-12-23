@@ -63,21 +63,24 @@ public interface Worm {
             //log.info("{} ({},{})\n{}", dir.name(), this.x, this.y, this.grid);
         }
 
+        @Override
+        public String toString() {
+            final Worm.Direction dir = this.directions[this.d];
+            return String.format("%s (%d,%d)\n%s", dir.name(), this.x, this.y, this.grid);
+        }
+
         private void init() {
             this.x = 0;
             this.y = 0;
             this.infections = 0L;
-            Worm.Simple.log.info("({},{}) {}\n{}", this.x, this.y, "UP", this.grid);
+            //Worm.Simple.log.info("({},{}) {}\n{}", this.x, this.y, "UP", this.grid);
         }
 
         private int burst() {
             final int current = this.grid.get(this.x, this.y);
-            int dir;
+            final int dir;
             if (current == Grid.CLEAN) {
                 dir = this.turnLeft();
-                if (dir < 0) {
-                    dir += this.directions.length;
-                }
                 this.infect();
             } else {
                 dir = this.turnRight();
@@ -141,13 +144,18 @@ public interface Worm {
             //log.info("{} ({},{})\n{}", dir.name(), x, y, this.grid);
         }
 
+        @Override
+        public String toString() {
+            final Worm.Direction dir = this.directions[this.d];
+            return String.format("%s (%d,%d)\n%s", dir.name(), this.x, this.y, this.grid);
+        }
+
         private void init() {
-            final int size = this.grid.size();
             this.x = 0;
             this.y = 0;
             this.d = 0;
             this.infections = 0L;
-            Worm.Simple.log.info("({},{}) {}\n{}", this.x, this.y, "UP", this.grid);
+            //Worm.Simple.log.info("({},{}) {}\n{}", this.x, this.y, "UP", this.grid);
         }
 
         private int burst() {

@@ -1,8 +1,5 @@
 package aoc.day22;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public final class GridSmart implements Grid {
 
     private Grid grid;
@@ -47,7 +44,6 @@ public final class GridSmart implements Grid {
         final Grid old = this.grid;
         final int current = old.size();
         final int target = 2 * current + 1;
-        log.info("Re-scaling grid from {} to {}", current, target);
         this.grid = new GridXY(new GridSimple(target));
         final int h = (current - 1) / 2;
         for (int x = -h; x <= h; ++x) {
