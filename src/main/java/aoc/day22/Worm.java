@@ -15,13 +15,16 @@ public interface Worm {
     @Accessors(fluent = true)
     @RequiredArgsConstructor
     enum Direction {
-        UP(-1, 0),
-        DOWN(1, 0),
-        LEFT(0, -1),
-        RIGHT(0, 1);
 
-        private final int dr;
-        private final int dc;
+        UP(0, 1),
+        DOWN(0, -1),
+        LEFT(-1, 0),
+        RIGHT(1, 0);
+
+        private final int dx;
+
+        private final int dy;
+
     }
 
     @Slf4j
@@ -37,9 +40,9 @@ public interface Worm {
 
         private final Grid grid;
 
-        private int r;
+        private int x;
 
-        private int c;
+        private int y;
 
         private int d;
 
@@ -55,21 +58,20 @@ public interface Worm {
         public void move() {
             this.d = this.burst();
             final Worm.Direction dir = this.directions[this.d];
-            this.c += dir.dc();
-            this.r += dir.dr();
-            //log.info("{} ({},{})\n{}", dir.name(), r, c, this.grid);
+            this.x += dir.dx();
+            this.y += dir.dy();
+            //log.info("{} ({},{})\n{}", dir.name(), this.x, this.y, this.grid);
         }
 
         private void init() {
-            final int size = this.grid.size();
-            this.c = (size - 1) / 2;
-            this.r = (size - 1) / 2;
+            this.x = 0;
+            this.y = 0;
             this.infections = 0L;
-            Worm.Simple.log.info("({},{}) {}\n{}", this.r, this.c, "UP", this.grid);
+            Worm.Simple.log.info("({},{}) {}\n{}", this.x, this.y, "UP", this.grid);
         }
 
         private int burst() {
-            final int current = this.grid.get(this.r, this.c);
+            final int current = this.grid.get(this.x, this.y);
             int dir;
             if (current == Grid.CLEAN) {
                 dir = this.turnLeft();
@@ -93,11 +95,11 @@ public interface Worm {
         }
 
         private void clean() {
-            this.grid.set(this.r, this.c, Grid.CLEAN);
+            this.grid.set(this.x, this.y, Grid.CLEAN);
         }
 
         private void infect() {
-            this.grid.set(this.r, this.c, Grid.INFECTED);
+            this.grid.set(this.x, this.y, Grid.INFECTED);
             this.infections++;
         }
 
@@ -116,9 +118,9 @@ public interface Worm {
 
         private final Grid grid;
 
-        private int r;
+        private int x;
 
-        private int c;
+        private int y;
 
         private int d;
 
@@ -134,22 +136,22 @@ public interface Worm {
         public void move() {
             this.d = this.burst();
             final Worm.Direction dir = this.directions[this.d];
-            this.c += dir.dc();
-            this.r += dir.dr();
-            //log.info("{} ({},{})\n{}", dir.name(), r, c, this.grid);
+            this.x += dir.dx();
+            this.y += dir.dy();
+            //log.info("{} ({},{})\n{}", dir.name(), x, y, this.grid);
         }
 
         private void init() {
             final int size = this.grid.size();
-            this.c = (size - 1) / 2;
-            this.r = (size - 1) / 2;
+            this.x = 0;
+            this.y = 0;
             this.d = 0;
             this.infections = 0L;
-            Worm.Simple.log.info("({},{}) {}\n{}", this.r, this.c, "UP", this.grid);
+            Worm.Simple.log.info("({},{}) {}\n{}", this.x, this.y, "UP", this.grid);
         }
 
         private int burst() {
-            final int current = this.grid.get(this.r, this.c);
+            final int current = this.grid.get(this.x, this.y);
             int dir = this.d;
             if (current == Grid.CLEAN) {
                 dir = this.turnLeft();
@@ -180,20 +182,20 @@ public interface Worm {
         }
 
         private void clean() {
-            this.grid.set(this.r, this.c, Grid.CLEAN);
+            this.grid.set(this.x, this.y, Grid.CLEAN);
         }
 
         private void weaken() {
-            this.grid.set(this.r, this.c, Grid.WEAKENED);
+            this.grid.set(this.x, this.y, Grid.WEAKENED);
         }
 
         private void infect() {
-            this.grid.set(this.r, this.c, Grid.INFECTED);
+            this.grid.set(this.x, this.y, Grid.INFECTED);
             this.infections++;
         }
 
         private void flag() {
-            this.grid.set(this.r, this.c, Grid.FLAGGED);
+            this.grid.set(this.x, this.y, Grid.FLAGGED);
         }
 
     }

@@ -18,16 +18,7 @@ public final class Day22 implements TwoPartChallenge<Long, Long> {
     }
 
     public Day22(final Grid grid) {
-        final int delta = 540;
-        final int size = grid.size();
-        this.grid = new GridSimple(size + delta);
-        final int half = (this.grid.size() - 1) / 2;
-        final int h = (size - 1) / 2;
-        for (int r = 0; r < size; ++r) {
-            for (int c = 0; c < size; ++c) {
-                this.grid.set(half - h + r, half - h + c, grid.get(r, c));
-            }
-        }
+        this.grid = new GridSmart(grid);
     }
 
     @Override
