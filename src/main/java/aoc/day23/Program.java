@@ -80,6 +80,7 @@ public interface Program {
             while (!this.finished()) {
                 this.runSingle();
             }
+            //log.info(this.state.toString());
         }
 
         private boolean finished() {
