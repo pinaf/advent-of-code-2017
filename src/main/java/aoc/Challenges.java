@@ -24,6 +24,7 @@ import aoc.day21.Day21;
 import aoc.day22.Day22;
 import aoc.day23.Day23;
 import aoc.day24.Day24;
+import aoc.day25.Day25;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 
@@ -60,7 +61,8 @@ public final class Challenges {
             new Day21(),
             new Day22(),
             new Day23(),
-            new Day24()
+            new Day24(),
+            new Day25()
         ).forEach(challenge -> {
             Challenges.log.info("{}: {}", challenge.name(), challenge.part1());
             Challenges.log.info("{}: {}", challenge.name(), challenge.part2());
